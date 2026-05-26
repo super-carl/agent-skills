@@ -14,6 +14,24 @@ python3 scripts/simulate_user_flows.py
 
 The simulation harness covers account intent, competitor engagement, owned audience follow-up, job seeker watches, recruiter candidate radar, champion mover watches, warm intro review, and `agent_webhook` delivery. It asserts that flows use inspectable evidence before promotion, preserve approval-gated outreach, include expected source/signal contracts, and keep `project_feed` enabled when `agent_webhook` is configured.
 
+Live stochastic runtime checks:
+
+```bash
+python3 scripts/live_agent_runtime_flows.py --runtime hermes-agent --runtime openclaw --model gpt-4.1-mini --temperature 0.7 --json-out /tmp/super-carl-live-runtimes.json
+```
+
+The live harness loads `OPENAI_API_KEY` from `../social-connector/.env`, registers a local mocked `watch_signals` MCP-like tool surface inside Hermes Agent and OpenClaw, runs their actual agent loops, captures emitted tool calls, and validates them against the deterministic contract. OpenClaw requires dependencies to be installed in the sibling checkout first:
+
+```bash
+cd ../openclaw-fresh && pnpm install
+```
+
+Focused reruns are useful when a stochastic trace exposes ambiguous skill wording:
+
+```bash
+python3 scripts/live_agent_runtime_flows.py --runtime hermes-agent --runtime openclaw --scenario agent_webhook_digest_delivery
+```
+
 OpenClaw validation from a sibling checkout:
 
 ```bash

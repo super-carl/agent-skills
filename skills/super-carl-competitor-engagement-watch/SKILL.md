@@ -19,7 +19,7 @@ Use this when the user asks to monitor competitor posts, competitor company acti
 3. Include `signal_types: ["competitor_engagement", "posts", "warm_intro"]`.
 4. Ask Super Carl to preserve post URL/snippet, actor, action type, timestamp, ICP reason, and social proximity in hit evidence.
 5. Use `hits` to inspect new signals and `evidence` before drafting.
-6. Use `promote_hit` only for strong ICP and receptivity matches; keep delivery approval-gated.
+6. Include `action_policy.never_send_without_approval: true` on the watch create/update. Use `promote_hit` only for strong ICP and receptivity matches; keep delivery approval-gated.
 
 ## Example Create
 
@@ -50,5 +50,6 @@ Lead with value, not surveillance. Prefer: "I noticed your comment on the pipeli
 ## Guardrails
 
 - Use `evidence` citations before any draft.
+- Do not omit `action_policy`; competitor engagement follow-up must stay approval-gated at watch creation time.
 - Do not claim the person has purchase intent unless the evidence supports it.
 - Do not send directly; require approval inside the Super Carl project.

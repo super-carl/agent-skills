@@ -18,7 +18,9 @@ Use this when an agent host can receive durable callback or trackback events and
 2. Keep `project_feed` enabled even when `agent_webhook` is configured.
 3. Use `delivery_channels: ["project_feed", "agent_webhook"]` plus app/email channels if desired.
 4. Add `callback_policy` with `callback_id`, `mcp_connection_id`, `event_types`, and optional team/delegate routing metadata.
-5. Use `delivery_status` to verify delivery and fallback to `status`, `hits`, and `evidence` polling if webhook delivery fails.
+5. Use `delivery_status` immediately after the update to verify callback delivery. This skill is about notification routing, not outreach or hit promotion.
+6. Fallback to `status`, `hits`, and `evidence` polling only if webhook delivery fails or the user explicitly asks to inspect the underlying signal content. If using `evidence`, first call `hits` and pass the returned `signal_hit_id`; never call `evidence` without a concrete `signal_hit_id`.
+7. Do not call `promote_hit` from this skill; webhook setup must not create drafts or project actions unless the user switches to an outreach/review skill.
 
 ## Example Update
 
@@ -41,8 +43,12 @@ Use this when an agent host can receive durable callback or trackback events and
 
 `agent_webhook` is a notification channel, not the scheduler of record. Super Carl still owns the watch, run timing, dedupe, credit pause/resume, evidence storage, and approval-gated project actions.
 
+For this skill, a successful run usually ends after `delivery_status`. If `delivery_status` confirms `agent_webhook` and `project_feed`, summarize the routing state and stop.
+
 ## Guardrails
 
 - Do not assume a callback woke the agent unless `delivery_status` confirms it.
 - Do not drop project feed or email/app fallback unless the user explicitly requests it.
+- Do not call `promote_hit` or request `draft_message` while configuring callbacks.
+- Do not call `evidence` without a `signal_hit_id` returned from `hits`.
 - Do not send outreach based on webhook payloads alone; fetch `evidence` and keep approval in the project.

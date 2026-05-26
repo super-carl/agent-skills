@@ -25,3 +25,11 @@ python3 scripts/simulate_user_flows.py
 ```
 
 The local validator checks frontmatter shape, unique names, description length, and basic safety wording. The simulation harness runs deterministic OpenClaw and Hermes Agent user-flow simulations against a mocked `watch_signals` MCP surface. OpenClaw and Hermes Agent validation commands are listed in `references/validation.md`.
+
+For live stochastic runtime checks with real LLM calls:
+
+```bash
+python3 scripts/live_agent_runtime_flows.py --runtime hermes-agent --runtime openclaw
+```
+
+The live harness uses `OPENAI_API_KEY` from `../social-connector/.env`, runs actual Hermes Agent and OpenClaw agent loops against a local mocked `watch_signals` tool surface, and compares emitted tool-call traces to the same contract.

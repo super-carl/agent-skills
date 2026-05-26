@@ -15,7 +15,7 @@ Use this when the user wants Carl to monitor roles, companies, recruiters, and w
 ## Flow
 
 1. Use the Super Carl MCP tool `watch_signals`; capture target role, level, geography, remote preference, company stage, must-have exclusions, and cadence.
-2. Use sources `owner_profile`, `account_list`, `job_search`, and `network_scope`.
+2. Use sources `owner_profile`, `account_list`, `job_search`, and `network_scope`. When the user asks to monitor roles or jobs, `job_search` is required as a source, not just implied by the `jobs` signal.
 3. Use signals `jobs`, `employee_post`, `company_growth`, and `warm_intro`.
 4. Ask Super Carl to cite job URLs, matched requirements, profile-fit facts, hiring-manager/recruiter evidence, and warm paths.
 5. Use `hits` and `evidence` before drafting intro requests or application notes.
@@ -32,6 +32,7 @@ Use this when the user wants Carl to monitor roles, companies, recruiters, and w
   "sources": [
     { "source_kind": "owner_profile", "value": "Use my Super Carl profile and work history" },
     { "source_kind": "account_list", "value": "AI infrastructure, developer tools, and data platforms" },
+    { "source_kind": "job_search", "value": "Senior product roles, remote or Bay Area" },
     { "source_kind": "network_scope", "value": "Hiring managers, recruiters, alumni, and coworkers" }
   ],
   "watch_prompt": "Find new senior product roles that match my background. Rank jobs by fit, company momentum, and reachable hiring paths. Send a digest when there are new strong matches.",
