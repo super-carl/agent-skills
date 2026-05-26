@@ -21,6 +21,7 @@ Each folder under `skills/` is an AgentSkills-style skill with a `SKILL.md` file
 
 ```bash
 python3 scripts/validate_skills.py
+python3 scripts/simulate_user_flows.py
 ```
 
-The local validator checks frontmatter shape, unique names, description length, and basic safety wording. OpenClaw and Hermes Agent validation commands are listed in `references/validation.md`.
+The local validator checks frontmatter shape, unique names, description length, and basic safety wording. The simulation harness runs deterministic OpenClaw and Hermes Agent user-flow simulations against a mocked `watch_signals` MCP surface. OpenClaw and Hermes Agent validation commands are listed in `references/validation.md`.

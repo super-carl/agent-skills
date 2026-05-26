@@ -6,6 +6,14 @@ Local validation:
 python3 scripts/validate_skills.py
 ```
 
+Deterministic user-flow simulations for OpenClaw and Hermes Agent:
+
+```bash
+python3 scripts/simulate_user_flows.py
+```
+
+The simulation harness covers account intent, competitor engagement, owned audience follow-up, job seeker watches, recruiter candidate radar, champion mover watches, warm intro review, and `agent_webhook` delivery. It asserts that flows use inspectable evidence before promotion, preserve approval-gated outreach, include expected source/signal contracts, and keep `project_feed` enabled when `agent_webhook` is configured.
+
 OpenClaw validation from a sibling checkout:
 
 ```bash
