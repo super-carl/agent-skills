@@ -6,7 +6,19 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
 MAX_DESCRIPTION = 1024
-REQUIRED_TERMS = ("watch_signals", "evidence", "approval")
+REQUIRED_TERMS = ("evidence", "approval")
+SUPPORTED_TOOLS = (
+    "agent_session",
+    "people_search",
+    "company_search",
+    "jobs_search",
+    "posts_search",
+    "people_lookup_batch",
+    "social_proximity_research",
+    "project_action",
+    "send_communication",
+    "watch_signals",
+)
 
 
 def parse_frontmatter(text):
@@ -50,6 +62,8 @@ def main():
             for term in REQUIRED_TERMS:
                 if term not in lowered:
                     raise ValueError(f"missing required term: {term}")
+            if not any(tool in lowered for tool in SUPPORTED_TOOLS):
+                raise ValueError("missing supported Super Carl MCP tool mention")
             if "auto-send" in lowered or "autosend" in lowered:
                 raise ValueError("unsafe auto-send wording")
         except Exception as exc:

@@ -1,6 +1,6 @@
 {
   "name": "super-carl-agent-skills",
-  "description": "Hosted Scan My Network workflows for Super Carl MCP/API users.",
+  "description": "Direct search, approval-gated outreach, and hosted Scan My Network workflows for Super Carl MCP/API users.",
   "homepage": "https://supercarl.ai",
   "docs": "https://supercarl.ai/docs",
   "skills": [
@@ -11,6 +11,10 @@
     "super-carl-recruiter-candidate-radar",
     "super-carl-champion-mover",
     "super-carl-warm-intro-outreach",
-    "super-carl-agent-webhook-digests"
+    "super-carl-agent-webhook-digests",
+    "super-carl-people-search-to-shortlist",
+    "super-carl-job-search-warm-path",
+    "super-carl-post-activity-to-prospects",
+    "super-carl-project-outreach-review"
   ]
 }
